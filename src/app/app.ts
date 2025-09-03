@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss'] // updated to scss for better styling
+  styleUrls: ['./app.css'] // updated to scss for better styling
 })
 export class App{
   items: any[] = [];

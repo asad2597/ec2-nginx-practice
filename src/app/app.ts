@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ItemsService } from './items.service';
 import { CommonModule } from '@angular/common';
@@ -6,13 +6,16 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule,FormsModule],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.scss'] // updated to scss for better styling
 })
-export class App {
+export class App{
   items: any[] = [];
-  newItem = '';
+
+  newName = '';
+  newDescription = '';
 
   constructor(private service: ItemsService) {}
 
@@ -25,10 +28,17 @@ export class App {
   }
 
   addItem() {
-    if (!this.newItem) return;
-    this.service.addItem({ name: this.newItem }).subscribe(() => {
+    if (!this.newName.trim() || !this.newDescription.trim()) return;
+
+    const newItem = {
+      name: this.newName,
+      description: this.newDescription
+    };
+
+    this.service.addItem(newItem).subscribe(() => {
       this.loadItems();
-      this.newItem = '';
+      this.newName = '';
+      this.newDescription = '';
     });
   }
 }

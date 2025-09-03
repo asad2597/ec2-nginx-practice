@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ItemsService {
-  private apiUrl = 'http://localhost:5000/api/items'; // replace later with EC2 backend
+  private apiUrl = '/api/items'; // replace later with EC2 backend
 
   constructor(private http: HttpClient) {}
 

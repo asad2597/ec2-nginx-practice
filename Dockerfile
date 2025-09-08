@@ -1,4 +1,13 @@
 
+# Stage 1: Build Angular app
+FROM node:20-alpine AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json first (better caching)
+COPY package*.json .
+
 #Install dependencies
 RUN npm ci
 
